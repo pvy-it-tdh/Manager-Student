@@ -76,7 +76,9 @@ function save() {
 
   if(fullname && email && phone && address && gender)
   {
-    let students = [];
+        let students = localStorage.getItem("students")
+          ? JSON.parse(localStorage.getItem("students"))
+          : [];
     students.push({
         fullname:fullname,
         email:email,
@@ -84,8 +86,23 @@ function save() {
         address:address,
         gender:gender
     });
+    localStorage.setItem('students',JSON.stringify(students));
+    this.renderListStudent();
+  }
+}
 
-    let tableContent = `<tr>
+
+function renderListStudent(){
+    let students = localStorage.getItem("students")
+      ? JSON.parse(localStorage.getItem("students")): [];
+
+    if(students.length===0) {
+        document.getElementById("list-student").style.display = "none";
+        return false;
+       
+    }
+    document.getElementById("list-student").style.display="block";
+        let tableContent = `<tr>
             <td>#</td>
             <td>Họ và tên</td>
             <td>Email</td>
@@ -94,10 +111,11 @@ function save() {
             <td>Giới tính</td>
             <td>Hành động</td>
         </tr>`;
-        students.forEach((student,index)=>{
-            index++;
-            let genderLabel=parseInt(student.gender)===1 ? 'Nam' : 'Nữ';
-            tableContent += `<tr>
+
+         students.forEach((student, index) => {
+           index++;
+           let genderLabel = parseInt(student.gender) === 1 ? "Nam" : "Nữ";
+           tableContent += `<tr>
             <td>${index}</td>
             <td>${student.fullname}</td>
             <td>${student.email}</td>
@@ -108,7 +126,6 @@ function save() {
                 <a href="#">Edit</a> | <a href="#">Delete</a>
             </td>
         </tr>`;
-        })  
-        document.getElementById('grid-students').innerHTML=tableContent
-  }
+         });
+         document.getElementById("grid-students").innerHTML = tableContent;
 }

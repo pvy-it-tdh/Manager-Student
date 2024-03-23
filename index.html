@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Quản Lí Sinh Viên</title>
 </head>
-<body>
+<body onload="renderListStudent()">
     <div class="form-student">
         <h3>Thông tin sinh viên</h3>
         <label>Họ và tên</label>
@@ -40,7 +40,7 @@
         <button onclick="save()">Lưu lại</button>
     </div>
 
-    <div class="list-student">
+    <div class="list-student" id="list-student">
         <h3>Danh sách sinh viên</h3>
         <table id="grid-students" width="600" border ="1" cellpadding="0" cellpadding="0">
         </table>
