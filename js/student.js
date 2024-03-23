@@ -45,7 +45,7 @@ function save() {
     document.getElementById("fullname-error").innerHTML = "";
   }
 
-  // xử lí Phong
+  // xử lí Phone
   if (_.isEmpty(phone)) {
     phone = "";
     document.getElementById("phone-error").innerHTML = "Vui lòng nhập SĐT";
@@ -91,7 +91,7 @@ function save() {
   }
 }
 
-
+// Hiểu thị Table
 function renderListStudent(){
     let students = localStorage.getItem("students")
       ? JSON.parse(localStorage.getItem("students")): [];
@@ -132,6 +132,7 @@ function renderListStudent(){
          document.getElementById("grid-students").innerHTML = tableContent;
 }
 
+// Delete Student
 function deleteStudent(id){
   let students = localStorage.getItem("students")
     ? JSON.parse(localStorage.getItem("students"))
