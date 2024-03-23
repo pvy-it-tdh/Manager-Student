@@ -113,8 +113,10 @@ function renderListStudent(){
         </tr>`;
 
          students.forEach((student, index) => {
-           index++;
+           
+           let studentID=index;
            let genderLabel = parseInt(student.gender) === 1 ? "Nam" : "Nữ";
+           index++;
            tableContent += `<tr>
             <td>${index}</td>
             <td>${student.fullname}</td>
@@ -123,9 +125,18 @@ function renderListStudent(){
             <td>${genderLabel}</td>
             <td>${student.address}</td>
             <td>
-                <a href="#">Edit</a> | <a href="#">Delete</a>
+                <a href="#">Edit</a> | <a href="#" onclick='deleteStudent(${studentID})'>Delete</a>
             </td>
         </tr>`;
          });
          document.getElementById("grid-students").innerHTML = tableContent;
+}
+
+function deleteStudent(id){
+  let students = localStorage.getItem("students")
+    ? JSON.parse(localStorage.getItem("students"))
+    : [];
+    students.splice(id,1);
+    localStorage.setItem('students',JSON.stringify(students));
+    renderListStudent();
 }
