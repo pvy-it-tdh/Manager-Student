@@ -73,4 +73,42 @@ function save() {
   } else {
     document.getElementById("gender-error").innerHTML = "";
   }
+
+  if(fullname && email && phone && address && gender)
+  {
+    let students = [];
+    students.push({
+        fullname:fullname,
+        email:email,
+        phone:phone,
+        address:address,
+        gender:gender
+    });
+
+    let tableContent = `<tr>
+            <td>#</td>
+            <td>Họ và tên</td>
+            <td>Email</td>
+            <td>Số điện thoại</td>
+            <td>Địa chỉ</td>
+            <td>Giới tính</td>
+            <td>Hành động</td>
+        </tr>`;
+        students.forEach((student,index)=>{
+            index++;
+            let genderLabel=parseInt(student.gender)===1 ? 'Nam' : 'Nữ';
+            tableContent += `<tr>
+            <td>${index}</td>
+            <td>${student.fullname}</td>
+            <td>${student.email}</td>
+            <td>${student.phone}</td>
+            <td>${genderLabel}</td>
+            <td>${student.address}</td>
+            <td>
+                <a href="#">Edit</a> | <a href="#">Delete</a>
+            </td>
+        </tr>`;
+        })  
+        document.getElementById('grid-students').innerHTML=tableContent
+  }
 }
