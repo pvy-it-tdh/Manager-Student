@@ -4,7 +4,7 @@ body{
 }
 
 .form-student{
-    width: 550px;
+    width: 530px;
     border: 1px solid #ccc;
     margin: 25px;
     padding: 10px;
@@ -32,4 +32,7 @@ h3{
 }
 button{
     margin-top: 15px;
+}
+.error{
+    color: red;
 }
